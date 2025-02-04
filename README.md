@@ -96,7 +96,7 @@ fs get-historical-features --start-date 2023-01-01 --end-date 2023-12-31
 ### Online Features Retrieval
 ```bash
 # Retrieve online features for specific customers
-fs get-online-features -c CUST001 -c CUST002
+fs get-online-features -c 1 -c 2
 
 # Retrieve specific features for customers
 fs get-online-features -c CUST001 -f purchase_value -f loyalty_score
