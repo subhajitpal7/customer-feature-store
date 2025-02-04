@@ -19,7 +19,8 @@ dist/
 build/
 .venv
 
-
+*.rdb
+*.lock
 *.db
 # Pytest
 .cache
