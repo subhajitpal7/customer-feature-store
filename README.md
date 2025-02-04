@@ -73,27 +73,8 @@ uv pip install -e .
 
 The project uses `feature_repo/feature_store.yaml` for Feast configuration:
 - Online store: Redis
-- Connection: `localhost:6379`
+- Connection: `localhost:6379`( To run the project on your local machine you need to have redis installed and running.)
 
-## CLI Commands
-
-### Feature Management
-
-```bash
-# Apply feature store components
-fs apply
-
-# Materialize features
-fs materialize
-
-# Materialize incrementally (optional end date)
-fs materialize-incremental
-fs materialize-incremental -e "2023-12-31 23:59:59"
-
-# Retrieve online features
-fs get-online-features
-fs get-online-features -c 101 -f purchase_value
-```
 
 ## CLI Usage Examples
 
