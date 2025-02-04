@@ -1,0 +1,17 @@
+project:
+  root_dir: "{project_root}"
+
+data:
+  test_task_data: "feature_repo/data/test_task_data.csv"
+  feature_repo_path: "feature_repo"
+
+redis:
+  host: localhost
+  port: 6379
+
+feature_store:
+  timezone: "Europe/Athens"
+
+logging:
+  level: INFO
+  file: "logs/feature_store.log"

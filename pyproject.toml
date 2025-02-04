@@ -1,0 +1,43 @@
+[project]
+name = "customer_feature_store"
+version = "0.1.0"
+description = "A feature store for customer data using Feast"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+dependencies = [
+    "feast>=0.34.0",
+    "click>=8.1.0",
+    "pandas>=2.0.0",
+    "redis>=4.5.0",
+    "pyarrow>=10.0.0",
+    "pyyaml>=6.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.3.0",
+    "black>=23.3.0",
+    "mypy>=1.3.0",
+    "types-redis",
+]
+
+[project.scripts]
+fs = "customer_feature_store.cli.main:cli"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["customer_feature_store"]
+package-dir = {"" = "src"}
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
