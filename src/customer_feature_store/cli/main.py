@@ -54,17 +54,32 @@ def get_historical_features(start_date, end_date):
 @cli.command()
 @click.option('--customer-ids', '-c', multiple=True, help='Customer IDs to retrieve features for')
 @click.option('--features', '-f', multiple=True, help='Specific features to retrieve')
-def get_features(customer_ids, features):
+def get_online_features(customer_ids, features):
     """Retrieve online features"""
     service = FeatureService()
     customer_ids = list(customer_ids) if customer_ids else None
     features = list(features) if features else None
-    
+    features = [f"customer_features:{feature}" for feature in features]
     online_features = service.get_online_features(
         customer_ids=customer_ids, 
         features=features
     )
     click.echo(online_features)
+
+@cli.command()
+def clear_online_store():
+    """Clear all data from the online store"""
+    service = FeatureService()
+    service.clear_online_store()
+    click.echo("✅ Online store cleared successfully.")
+
+@cli.command()
+@click.option('--backup-file', '-f', default='online_store_backup.rdb', help='Path to backup file')
+def backup_online_store(backup_file):
+    """Create a backup of the online store"""
+    service = FeatureService()
+    service.backup_online_store(backup_file)
+    click.echo(f"✅ Online store backed up to {backup_file}")
 
 if __name__ == "__main__":
     cli()

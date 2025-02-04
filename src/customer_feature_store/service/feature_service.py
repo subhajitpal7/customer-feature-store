@@ -41,11 +41,21 @@ class FeatureService:
     def materialize_features(self, start_date: Optional[pd.Timestamp] = None, end_date: Optional[pd.Timestamp] = None):
         """Materialize features for a given time range"""
         df = pd.read_csv(get_data_path('test_task_data'))
+        
+        # Convert purchase_timestamp to datetime if it's a string
+        df['purchase_timestamp'] = pd.to_datetime(df['purchase_timestamp'])
+        
         if start_date is None:
             start_date = df['purchase_timestamp'].min().to_pydatetime().replace(tzinfo=ZoneInfo('Europe/Athens'))
+        
         if end_date is None:
             end_date = df['purchase_timestamp'].max().to_pydatetime().replace(tzinfo=ZoneInfo('Europe/Athens'))
-        self.store.materialize(feature_views=["customer_features"], start_date=start_date, end_date=end_date)
+        
+        self.store.materialize(
+            feature_views=["customer_features"],
+            start_date=start_date,
+            end_date=end_date
+        )
 
     def materialize_incremental(self, end_date: Optional[pd.Timestamp] = None):
         """Incrementally materialize features"""

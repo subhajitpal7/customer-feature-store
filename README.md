@@ -1,6 +1,29 @@
-# Customer Feature Store
+# Customer Feature Store: Intelligent Customer Insights Platform
 
-A feature store for managing and serving customer-related features using Feast.
+## 🚀 Project Overview
+
+The Customer Feature Store is a simple data management solution for organizing and serving customer-related features. Built using Feast, it helps teams centralize feature computation and make machine learning workflows more consistent and efficient.
+
+### 🌟 Key Objectives
+
+- **Unified Feature Management**: Centralize customer feature computation and storage
+- **Real-time Feature Serving**: Enable sub-millisecond feature retrieval for ML models
+- **Data Consistency**: Ensure feature consistency across training and inference
+- **Scalable Architecture**: Support growing data volumes and complex feature definitions
+
+### 💡 Core Capabilities
+
+- Seamless offline and online feature storage
+- Incremental feature materialization
+- Flexible feature retrieval mechanisms
+- Robust CLI for feature management
+- Easy integration with machine learning workflows
+
+## Project Background
+
+In today's data-driven landscape, organizations struggle with fragmented customer data and inconsistent feature engineering. This feature store addresses these challenges by providing a robust, scalable solution for managing customer features across the entire machine learning lifecycle.
+
+## Features
 
 ## Project Structure
 
@@ -68,9 +91,59 @@ fs materialize-incremental
 fs materialize-incremental -e "2023-12-31 23:59:59"
 
 # Retrieve online features
-fs get-features
-fs get-features -c 101 -f purchase_value
+fs get-online-features
+fs get-online-features -c 101 -f purchase_value
 ```
+
+## CLI Usage Examples
+
+### Feature Materialization
+```bash
+# Materialize features
+fs materialize
+```
+
+### Historical Features Retrieval
+```bash
+# Retrieve historical features for all customers
+fs get-historical-features
+
+# Retrieve historical features within a specific date range
+fs get-historical-features --start-date 2023-01-01 --end-date 2023-12-31
+```
+
+### Online Features Retrieval
+```bash
+# Retrieve online features for specific customers
+fs get-online-features -c CUST001 -c CUST002
+
+# Retrieve specific features for customers
+fs get-online-features -c CUST001 -f purchase_value -f loyalty_score
+```
+
+### Online Store Management
+```bash
+# Clear all data from the online store
+fs clear-online-store
+
+# Backup online store to a specific file
+fs backup-online-store -f my_backup.rdb
+```
+
+### Feature Store Management
+```bash
+# Apply feature store components
+fs apply
+
+# Incrementally materialize features
+fs materialize-incremental
+```
+
+## Advanced Usage
+
+- Use environment variables for configuration
+- Integrate with existing ML pipelines
+- Customize feature retrieval based on specific requirements
 
 ## Data Conversion
 
@@ -93,7 +166,3 @@ uv pip install -e .[dev]
 - CLI for feature management
 - Flexible feature retrieval
 - Incremental materialization support
-
-## License
-
-[Specify your license]
